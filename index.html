@@ -1,13 +1,97 @@
-<html>
-  <title>
-    
-  </title>
-  <head>
-    <body>
-      <h1>This is my Web </h1>
-      <p>Hello World</p>
-      <h2>Rickson Ortega</h2>
-      <h3>BSIT-2C</h3>
-    </body>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EDULINK To-Do List — Student</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <h1>🎓 EduLink</h1>
+        <p class="subtitle">Organize assignments, reminders & study goals</p>
+      </div>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn ghost" onclick="toggleTheme()">🌓 Theme</button>
+        <button id="changeRoleBtn" class="btn accent" onclick="changeRole()">Change Role</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Role/Welcome -->
+    <section id="role-panel" class="panel">
+      <div class="role-select">
+        <button class="btn role" onclick="selectRole('Student')">👩‍🎓 Student</button>
+        <button class="btn role" onclick="selectRole('Teacher')">👨‍🏫 Teacher</button>
+        <button class="btn role" onclick="selectRole('Parent')">👨‍👩‍👧 Parent</button>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="panel hidden">
+      <div class="welcome-row">
+        <div>
+          <h2 id="role-title">Welcome, Student</h2>
+          <div id="welcome" class="muted">Student</div>
+        </div>
+
+        <div class="search-wrap">
+          <input id="search" class="input search" placeholder="🔎 Search task..." oninput="searchTasks()" />
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="form-card">
+        <input id="task-title" class="input" placeholder="Task title (e.g. Read Chapter 3)" />
+        <input id="task-date" class="input" type="date" />
+        <select id="task-priority" class="input">
+          <option value="Low">Low</option>
+          <option value="Normal">Normal</option>
+          <option value="High">High</option>
+        </select>
+
+        <div class="form-actions">
+          <button id="addBtn" class="btn primary" onclick="addTask()">➕ Add Task</button>
+          <button id="cancelEditBtn" class="btn ghost hidden" onclick="cancelEdit()">✖ Cancel</button>
+        </div>
+      </div>
+
+      <!-- List -->
+      <div id="task-list" class="list"></div>
+
+      <!-- Summary & Progress -->
+      <div class="summary-card">
+        <h3>📊 Summary Dashboard</h3>
+        <p id="summary-content">Total: 0 | Completed: 0</p>
+        <div class="progress-bar" aria-hidden="true">
+          <div id="progress" class="progress-fill" style="width:0%"></div>
+        </div>
+
+        <div class="extras">
+          <button class="btn outline" onclick="exportTasks()">📤 Export</button>
+          <label class="file-label">
+            📥 Import
+            <input id="import-file" type="file" accept=".json" onchange="importTasks(event)" />
+          </label>
+          <button class="btn outline" onclick="clearCompleted()">🧹 Clear Completed</button>
+          <button class="btn destructive" onclick="clearAll()">🗑️ Clear All</button>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div class="calendar-card">
+        <h3>📅 Upcoming Tasks</h3>
+        <ul id="calendar-list" class="calendar-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>Developed by Rickson • Student Project</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
