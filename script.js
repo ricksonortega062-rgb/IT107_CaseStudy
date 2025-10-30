@@ -118,6 +118,9 @@ function markDone(id) {
 }
 
 function deleteTask(id) {
+  const confirmDelete = confirm("Are you sure you want to delete this task?");
+  if (!confirmDelete) return;
+  
   tasks = tasks.filter(t => t.id !== id);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
@@ -126,6 +129,9 @@ function deleteTask(id) {
 
 // ===== EDIT FUNCTION ADDED =====
 function editTask(id) {
+  const confirmEdit = confirm("Are you sure you want to edit this task?");
+  if (!confirmEdit) return;
+  
   const task = tasks.find(t => t.id === id);
   if (!task) return;
 
